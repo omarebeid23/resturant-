@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>{{ restaurant['name'] }}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <div class="hero">
+            <h1>Welcome to {{ restaurant['name'] }}</h1>
+            <p>{{ restaurant['description'] }}</p>
+            <a href="#menu" class="cta-button">View Menu</a>
+        </div>
+    </section>
+
+    <section id="menu">
+        <h2>Menu</h2>
+        <div class="menu-items">
+            <ul>
+                {% for item in restaurant['menu'] %}
+                <li>{{ item['item'] }} - {{ item['price'] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>{{ restaurant['about'] }}</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: {{ restaurant['contact']['email'] }}</p>
+        <p>Phone: {{ restaurant['contact']['phone'] }}</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 {{ restaurant['name'] }}</p>
+    </footer>
+</body>
+</html>
